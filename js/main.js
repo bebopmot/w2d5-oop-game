@@ -9,15 +9,12 @@ class Player {
     this.positionY++;
     const playerElm = document.getElementById("player");
     playerElm.style.bottom = `${this.positionY}vh`;
-
-    console.log("moving up", this.positionY);
   }
 
   moveDown() {
     this.positionY--;
     const playerElm = document.getElementById("player");
     playerElm.style.bottom = `${this.positionY}vh`;
-    console.log("moving down", this.positionY);
   }
 }
 
@@ -54,7 +51,7 @@ class Opponent {
           this.direction = "up";
         }
       }
-    }, 100); // Adjust timing for desired speed
+    }, 10); // Adjust timing for desired speed
   }
 }
 
@@ -68,6 +65,8 @@ class Ball {
     this.speedY = Math.random() > 0.5 ? 1 : -1;
   }
   move() {
+    this.countPointsPlayer();
+    this.countPointsOpponent();
     // calculate the new position
     this.positionX = this.positionX + this.speedX;
     this.positionY += this.speedY;
@@ -109,24 +108,55 @@ class Ball {
       this.speedY *= -1;
     }
 
-    if (this.positionX < 0 || this.positionX > 100) {
-        console.log("game over...");
-        location.href = "gameover.html";
+    /*if (this.positionX < 0 || this.positionX > 100) {
+      console.log("game over...");
+      location.href = "gameover.html";
+    }
+      */
+  }
+  countPointsPlayer() {
+    const pointElm = document.getElementById("points-player");
+    // Make sure 'counter' persists across calls
+    if (!this.counter) this.counter = 0;
+
+    if (this.positionX > 100) {
+      this.counter++;
+      pointElm.innerText = this.counter;
+      
+      this.positionX = 50; 
+      this.positionY = 50; 
+      this.speedX = Math.random() > 0.5 ? 1 : -1; 
+      this.speedY = Math.random() > 0.5 ? 1 : -1;
     }
   }
 
-  gameOver() {
-    clearInterval(gameInterval);
-    alert("Game Over!");
-    
+
+  countPointsOpponent() {
+    const pointElm = document.getElementById("points-opponent");
+    // Make sure 'counter' persists across calls
+    if (!this.counteropp) this.counteropp = 0;
+
+    if (this.positionX < 0) {
+      this.counteropp++;
+      pointElm.innerText = this.counteropp;
+      
+      this.positionX = 50; 
+      this.positionY = 50;
+      this.speedX = Math.random() > 0.5 ? 1 : -1; 
+      this.speedY = Math.random() > 0.5 ? 1 : -1;
+    }
   }
+
+
 }
 
 const ball = new Ball();
 
+ball.countPointsPlayer()
+
 const gameInterval = setInterval(() => {
-    ball.move();
-}, 80);
+  ball.move();
+}, 50);
 
 const player = new Player();
 

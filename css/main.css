@@ -55,7 +55,7 @@ body {
   height: 40vh;
   position: absolute;
   bottom: 50vh;
-  left: 94vw;
+  left: 97vw;
 }
 
 #ball {
@@ -65,4 +65,30 @@ body {
   left: 50vw;
   width: 1vw;
   height: 2vh;
+}
+
+
+#points-player {
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-size: 9vw;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  position: absolute;
+  bottom: 80vh;
+  width: 10vw;
+  height: 15vh;
+  left: 20vw
+}
+
+
+#points-opponent {
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-size: 9vw;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  position: absolute;
+  bottom: 80vh;
+  width: 10vw;
+  height: 15vh;
+  left: 70vw
 }
