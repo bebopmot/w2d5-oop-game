@@ -20,7 +20,7 @@ class Player {
 
 class Opponent {
   constructor() {
-    this.positionX = 94;
+    this.positionX = 97;
     this.positionY = 50;
     this.width = 2;
     this.height = 40;
