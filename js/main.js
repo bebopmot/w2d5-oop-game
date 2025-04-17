@@ -6,16 +6,20 @@ class Player {
     this.height = 10;
   }
   moveUp() {
-    this.positionY++;
-    const playerElm = document.getElementById("player");
-    playerElm.style.bottom = `${this.positionY}vh`;
+    if (this.positionY + this.height < 100) {
+      this.positionY += 3;
+      const playerElm = document.getElementById("player");
+      playerElm.style.bottom = `${this.positionY}vh`;
+    }
   }
 
   moveDown() {
-    this.positionY--;
-    const playerElm = document.getElementById("player");
-    playerElm.style.bottom = `${this.positionY}vh`;
-  }
+    if (this.positionY > 0) {
+      this.positionY -= 3;
+      const playerElm = document.getElementById("player");
+      playerElm.style.bottom = `${this.positionY}vh`;
+    }
+}
 }
 
 class Opponent {
@@ -23,7 +27,7 @@ class Opponent {
     this.positionX = 97;
     this.positionY = 50;
     this.width = 2;
-    this.height = 40;
+    this.height = 80;
     this.speed = 2;
     this.direction = "up";
   }
@@ -51,7 +55,7 @@ class Opponent {
           this.direction = "up";
         }
       }
-    }, 10); // Adjust timing for desired speed
+    }, 130); // Adjust timing for desired speed
   }
 }
 
@@ -156,7 +160,7 @@ ball.countPointsPlayer()
 
 const gameInterval = setInterval(() => {
   ball.move();
-}, 50);
+}, 30);
 
 const player = new Player();
 
